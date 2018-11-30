@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>cuestionario</title>
+
+  </head>
+  <body>
+    <div id="pregunta"></div>
+    <div id="respuestas"></div>
+
+    <input type="button"  value=" acertado" onclick="comprobar()">
+    <script>
+      var preguntas= [
+        "1.¿Como se representa un algoritmo?",
+        "2.¿Que es un arreglo?",
+        "3.¿Que es  AWS?",
+        "4. ¿ Que es git",
+        "5. ¿Que hace los  Staged en Git?",
+        "6. ¿Cual es el objetivo de el uso de Java Script  en los formularios HTML?",
+        "7. ¿ Cual es uno de los sitemas de control de versiones?",
+        "8 ¿ Cual es uno de los beneficios de utilizar GIT?",
+        "9 ¿ Diferencia de GIT de otros VCS?",
+        "10 ¿Cual es uno de los tres estados de GIT?"
+
+
+
+      ];
+      var respuestas =[
+      [ "speudocodigo", "en C++", "Java"],
+      ["Es una estructura de datos ampliamente usada", "Son estructuras que nos permiten organizar elementos", "Son secuencias"],
+      ["Servidor web amazon","servidor html","enlista todos los rachivos qu eencuentre"],
+      ["estructura que contiene tanto variable como funciones","Sistema de control de versiones","almacena datos"],
+      [" Realiza cambios en los archivos","la informacion esta segura","Marca los archivos modificados dejando listo para confirmarlos"],
+      [" validar datos ingresados","verificar informacion","acceso a metodos y propiedades"],
+      ["Global","local","estructurado"],
+      ["Fuente de apoyo en el desarrollo no lineal","Donde se encuentra nuestra informacion segura","Ssitema de control de versiones"],
+      ["GIT  es muy rapido para moverse en el tiempo ademas que tiene integridad","simplifica  el paradigma  a  objetos y hace de una programcion hibrida ","accede a propiedades y objetos"],
+      [" Working Directory","Distribuido"," Centralizado"]
+
+
+
+    ] ;
+
+    seguirIntentando();
+  var indice_respuestas_correcta;
+    function seguirIntentando(){
+      var indice_aleatorio = Math.floor(Math.random()* preguntas.length);
+
+      var respuestas_posibles = respuestas[indice_aleatorio];
+
+      var posiciones =[0,1,2,3];
+      var respuestas_reordenadas = [];
+
+      var ya_ingreso = false;
+
+       for( i in respuestas_posibles){
+           var posicion_aleatoria=Math.floor(Math.random()* posiciones.length);
+           if(posicion_aleatoria==0 && ya_ingreso == false){
+             indice_respuestas_correcta = i;
+             ya_ingreso = true;
+
+
+           }
+       respuestas_reordenadas[i]=respuestas_posibles[posiciones[posicion_aleatoria]];
+       posiciones.splice(posicion_aleatoria,1);
+  }
+      var txt_respuestas="";
+      for (i in respuestas_reordenadas) {
+        txt_respuestas += '<input type="radio" name =" jj"valve="'+i+'"><label>'+
+          respuestas_reordenadas[i]+'</label><br>';
+
+      }
+      document.getElementById("respuestas").innerHTML = txt_respuestas;
+      document.getElementById("pregunta").innerHTML = preguntas [indice_aleatorio];
+    }
+    function comprobar(){
+      // var respuestas = $("input [type=radio]:checked").val();
+
+
+       if(respuestas == indice_respuestas_correcta){
+         alert ("muy bien !");
+
+       }else {
+         alert ("sigue intentando");
+       }
+       seguirIntentando();
+    }
+
+
+    </script>
+
+  </body>
+</html>
